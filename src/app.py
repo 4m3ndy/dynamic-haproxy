@@ -10,12 +10,12 @@ def api_root():
         endpoints = request.json
         env = Environment(loader=FileSystemLoader ('templates'), trim_blocks=True)
         template = env.get_template('haproxy.jinja2.cfg')
-        renderedCfg = template.render(endpoints = endpoints, domainName = os.getenv('DOMAIN_NAME'))
-        haCfg = open('/etc/haproxy/haproxy.cfg','w')
-        haCfg.write(renderedCfg)
-        haCfg.close
-        os.kill(int(subprocess.run(["pidof", "-s", "haproxy"], stdout=subprocess.PIPE).stdout),signal.SIGHUP)
-
+        rendered_cfg = template.render(endpoints = endpoints, domain_name = os.getenv('DOMAIN_NAME'))
+        ha_cfg = open('/etc/haproxy/haproxy.cfg','w')
+        ha_cfg.write(rendered_cfg)
+        ha_cfg.close
+        # Send HUP signal to reload configuration
+        os.kill(int(subprocess.run(["pidof", "-s", "haproxy"], stdout=subprocess.PIPE).stdout), signal.SIGHUP)
         return "Configuration Reloaded"
         
 
