@@ -16,7 +16,7 @@ spec:
       serviceAccountName: service-proxy-operator
       containers:
         - name: service-proxy-operator
-          image: "dynamic-haproxy:v0.1.0"
+          image: "4m3ndy/service-proxy:v0.1.0"
           imagePullPolicy: Always
           resources:
             requests:

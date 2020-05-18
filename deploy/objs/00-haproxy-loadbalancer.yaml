@@ -9,7 +9,7 @@ spec:
     haproxyloadbalancer:
         # annotations: {}
         image:
-           name: 'service-proxy:v0.1.0'
+           name: '4m3ndy/service-proxy:v0.1.0'
            pullPolicy: 'IfNotPresent'
         #    pullSecrets:
         #        - some-secret
