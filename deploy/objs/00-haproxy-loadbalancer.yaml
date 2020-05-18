@@ -9,7 +9,7 @@ spec:
     haproxyloadbalancer:
         # annotations: {}
         image:
-           name: 'dynamic-haproxy:v0.1.0'
+           name: 'service-proxy:v0.1.0'
            pullPolicy: 'IfNotPresent'
         #    pullSecrets:
         #        - some-secret
