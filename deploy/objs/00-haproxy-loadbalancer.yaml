@@ -1,0 +1,34 @@
+apiVersion: haproxyoperator.ecloudcontrol.com/v1
+kind: HAProxyLoadBalancer
+metadata:
+    name: haproxy-lb
+    #labels: {}
+    #annotations: {}
+spec:
+    replicas: 1
+    haproxyloadbalancer:
+        # annotations: {}
+        image:
+           name: '4m3ndy/service-proxy:v0.1.0'
+           pullPolicy: 'IfNotPresent'
+        #    pullSecrets:
+        #        - some-secret
+        env:
+            DOMAIN_NAME: example.com
+        #securityContext:
+        #    enabled: false
+        #    fsGroup: 1001
+        #    runAsUser: 1001
+    service:
+        #annotations: {}
+        type: LoadBalancer
+        #loadBalancerIP: ~
+        ports:
+            http: 80
+            https: 443
+    persistence:
+        enabled: true
+        #annotations: {}
+        #storageClass: ~
+        #accessModes: ['ReadWriteOnce']
+        size: 1Gi

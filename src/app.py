@@ -14,8 +14,8 @@ def api_root():
         ha_cfg = open('/etc/haproxy/haproxy.cfg','w')
         ha_cfg.write(rendered_cfg)
         ha_cfg.close
-        # Send HUP signal to reload configuration
-        os.kill(int(subprocess.run(["pidof", "-s", "haproxy"], stdout=subprocess.PIPE).stdout), signal.SIGHUP)
+        # Send SIGUSR2 signal to reload configuration
+        os.kill(int(subprocess.run(["cat", "/tmp/haproxy.pid"], stdout=subprocess.PIPE).stdout), signal.SIGUSR2)
         return "Configuration Reloaded"
         
 
